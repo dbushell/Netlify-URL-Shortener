@@ -10,21 +10,32 @@ const App = props => {
   };
   const onSubmit = ev => {
     ev.preventDefault();
-    const data = JSON.stringify({
-      url
-    });
+    fetch('/.netlify/functions/unshorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({url})
+    })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     // https://eavesdrop.app/.netlify/functions/unshorten
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/.netlify/functions/unshorten', true);
-    xhr.setRequestHeader('Accept', 'application/json; charset=UTF-8');
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    xhr.addEventListener('loadend', response => {
-      console.log(response);
-      if (response.target.status === 200) {
-      } else {
-      }
-    });
-    xhr.send(data);
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('POST', '/.netlify/functions/unshorten', true);
+    // xhr.setRequestHeader('Accept', 'application/json; charset=UTF-8');
+    // xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    // xhr.addEventListener('loadend', response => {
+    //   console.log(response.target);
+    //   if (response.target.status === 200) {
+    //   } else {
+    //   }
+    // });
+    // xhr.send(data);
   };
   return (
     <Fragment>
