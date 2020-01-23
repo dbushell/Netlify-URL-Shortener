@@ -61,9 +61,7 @@ module.exports = {
     }
     callback(null, {
       statusCode: 200,
-      body: JSON.stringify({
-        url: 'test!'
-      })
+      body: JSON.stringify(event)
     });
   }
 };
