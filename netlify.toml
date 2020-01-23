@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+  functions = "functions"
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Option = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "frame-ancestors 'none'"

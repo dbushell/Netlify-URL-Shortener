@@ -1,0 +1,15 @@
+{
+  "name": "eavesdrop-app",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbushell/eavesdrop.app.git"
+  },
+  "description": "URL unshortener/expander Progressive Web App (hosted on Netlify)",
+  "main": "functions/unshorten.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Bushell <david@dbushell.com>",
+  "license": "MIT"
+}
