@@ -1,15 +1,19 @@
 import React, {Fragment, useState} from 'react';
+import Alert from './alert';
 import Footer from './footer';
 import Form from './form';
 
 const App = props => {
   const [url, setURL] = useState('');
+  const [error, setError] = useState(false);
   const [isWaiting, setWaiting] = useState(false);
   const onChange = ev => {
     setURL(ev.target.value);
   };
   const onSubmit = ev => {
     ev.preventDefault();
+    setError(false);
+    setWaiting(true);
     fetch('/.netlify/functions/unshorten', {
       method: 'POST',
       headers: {
@@ -17,28 +21,24 @@ const App = props => {
       },
       body: JSON.stringify({url})
     })
+      .then(response => response.json())
       .then(data => {
-        console.log(data);
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        setError(false);
+        setURL(data.url);
       })
       .catch(err => {
-        console.log(err);
+        setError(err.message);
+      })
+      .finally(() => {
+        setWaiting(false);
       });
-
-    // https://eavesdrop.app/.netlify/functions/unshorten
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('POST', '/.netlify/functions/unshorten', true);
-    // xhr.setRequestHeader('Accept', 'application/json; charset=UTF-8');
-    // xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    // xhr.addEventListener('loadend', response => {
-    //   console.log(response.target);
-    //   if (response.target.status === 200) {
-    //   } else {
-    //   }
-    // });
-    // xhr.send(data);
   };
   return (
     <Fragment>
+      {error && <Alert message={error} />}
       <Form
         url={url}
         isDisabled={isWaiting}
