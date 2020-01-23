@@ -52,11 +52,17 @@ function unshorten(short, config) {
 
 module.exports = {
   handler: (event, context, callback) => {
-    const json = JSON.parse(event.body);
+    if (event.httpMethod !== 'POST') {
+      callback(null, {
+        statusCode: 405,
+        body: 'Method Not Allowed'
+      });
+      return;
+    }
     callback(null, {
       statusCode: 200,
       body: {
-        url: unshorten(json.url)
+        url: 'test!'
       }
     });
   }

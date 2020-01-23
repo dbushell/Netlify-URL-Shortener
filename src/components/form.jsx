@@ -2,7 +2,7 @@ import React from 'react';
 
 const Form = props => {
   return (
-    <form method="get" onSubmit={props.onSubmit} autocomplete="off">
+    <form onSubmit={props.onSubmit} autocomplete="off">
       <fieldset disabled={props.isDisabled}>
         <input
           required

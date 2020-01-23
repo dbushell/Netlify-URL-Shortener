@@ -15,7 +15,7 @@ const App = props => {
     });
     // https://eavesdrop.app/.netlify/functions/unshorten
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://eavesdrop.app/.netlify/functions/unshorten', true);
+    xhr.open('POST', '/.netlify/functions/unshorten', true);
     xhr.setRequestHeader('Accept', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.addEventListener('loadend', response => {
