@@ -1,4 +1,4 @@
-# [eavesdrop.app](https://eavesdrop.app/)
+# eavesdrop.app
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9d1964ad-6c3c-49c2-a386-4c4f0dc5df21/deploy-status)](https://app.netlify.com/sites/eavesdrop-app/deploys)
 
