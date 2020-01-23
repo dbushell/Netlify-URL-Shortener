@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import Alert from './alert';
+import Aside from './aside';
 import Footer from './footer';
 import Form from './form';
 
@@ -38,13 +39,19 @@ const App = props => {
   };
   return (
     <Fragment>
-      {error && <Alert message={error} />}
-      <Form
-        url={url}
-        isDisabled={isWaiting}
-        onChange={onChange}
-        onSubmit={onSubmit}
-      />
+      <header>
+        <h1 data-text="Eavesdrop">Eavesdrop</h1>
+      </header>
+      <main>
+        <Form
+          url={url}
+          isDisabled={isWaiting}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
+        {error && <Alert message={error} />}
+      </main>
+      <Aside />
       <Footer />
     </Fragment>
   );
