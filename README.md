@@ -4,6 +4,8 @@
 
 URL Unshortener (Progressive Web App, hosted on Netlify)
 
+![Eavesdrop](/public/assets/eavesdrop.gif)
+
 * * *
 
 ## Credits / License
