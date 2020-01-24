@@ -6,7 +6,7 @@ URL Unshortener (Progressive Web App, deployed on Netlify)
 
 [![Eavesdrop](/public/assets/eavesdrop.gif)](https://eavesdrop.app)
 
-Eavesdrop is a PWA built with React, Node, and deployed on Netlify.
+Eavesdrop is a PWA proof-of-concept built with React, Node, and deployed on Netlify.
 
 More details coming soon...
 

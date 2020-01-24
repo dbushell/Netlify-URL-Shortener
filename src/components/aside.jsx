@@ -4,8 +4,8 @@ const Aside = memo(props => {
   return (
     <aside>
       <p>
-        Eavesdrop – a progressive web app to unshorten URLs. Built with React,
-        Node, and Netlify.
+        A progressive web app to unshorten URLs. Proof-of-concept built with
+        React, Node, and Netlify functions.
       </p>
     </aside>
   );
