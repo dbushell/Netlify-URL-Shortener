@@ -5,14 +5,20 @@ import Footer from './footer';
 import Form from './form';
 
 const App = props => {
-  const [url, setURL] = useState('');
-  const [error, setError] = useState(false);
+  const [url, setURL] = useState('https://bit.ly/37orN4K');
+  const [isNew, setNew] = useState(true);
+  const [isDone, setDone] = useState(false);
+  const [isError, setError] = useState(false);
   const [isWaiting, setWaiting] = useState(false);
   const onChange = ev => {
     setURL(ev.target.value);
+    setNew(true);
+    setDone(false);
+    setError(false);
   };
   const onSubmit = ev => {
     ev.preventDefault();
+    setDone(false);
     setError(false);
     setWaiting(true);
     fetch('/.netlify/functions/unshorten', {
@@ -27,11 +33,13 @@ const App = props => {
         if (data.error) {
           throw new Error(data.error);
         }
+        setDone(true);
         setError(false);
         setURL(data.url);
       })
       .catch(err => {
-        setError(err.message);
+        console.log(err.message);
+        setError(true);
       })
       .finally(() => {
         setWaiting(false);
@@ -44,12 +52,16 @@ const App = props => {
       </header>
       <main>
         <Form
-          url={url}
-          isDisabled={isWaiting}
-          onChange={onChange}
-          onSubmit={onSubmit}
+          {...{
+            isDone,
+            isError,
+            isWaiting,
+            url,
+            onChange,
+            onSubmit
+          }}
         />
-        {error && <Alert message={error} />}
+        {isError && <Alert message={'⚠️ Sorry – the unshortening failed…'} />}
       </main>
       <Aside />
       <Footer />

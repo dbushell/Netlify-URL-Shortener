@@ -10,6 +10,7 @@ button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-bloc
   --aside: hsl(var(--h), calc(var(--s) - 0%), calc(var(--l) - 14%));
   --main: hsl(var(--h), calc(var(--s) - 0%), calc(var(--l) - 10%));
   --shadow: hsl(var(--h), calc(var(--s) - 0%), calc(var(--l) - 18%));
+  --error: hsl(var(--h), 100%, 80%);
 }
 
 *,
@@ -144,6 +145,7 @@ header {
   grid-column: 2 / 3;
   grid-row: 1 / 1;
   padding: 2vh 7vw;
+  position: relative;
 }
 
 aside {
@@ -153,12 +155,24 @@ aside {
   grid-row: 2 / 3;
   padding: 5vh 3.5vw;
   color: #fffbcc;
+  position: relative;
 }
 aside p {
   font-size: 2.5vw;
   line-height: 1.35;
   letter-spacing: 0.03rem;
-  margin: 12px 0;
+  margin: 1.5vw 0;
+}
+
+[role="alert"] {
+  color: var(--error);
+  text-shadow: 0 -1px 0 var(--shadow);
+}
+[role="alert"] p {
+  font-size: 2.5vw;
+  line-height: 1.35;
+  letter-spacing: 0.03rem;
+  margin: 1.5vw 0;
 }
 
 main {
@@ -167,6 +181,7 @@ main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   padding: 5vh 7vw;
+  position: relative;
 }
 
 footer {
@@ -196,13 +211,13 @@ fieldset {
 
 input[type="url"] {
   background: rgba(255, 255, 255, 0.9);
-  border: 2px solid transparent;
-  border-radius: 7px;
+  border: 0;
+  border-radius: 1.25vw;
   box-shadow: 2px 2px 4px 0 var(--shadow), 8px 8px 16px 0 var(--shadow);
   font-family: aglet-slab, sans-serif;
   font-size: 2.5vw;
   line-height: 1.35;
-  padding: 10px 15px;
+  padding: 1.5vw 2vw;
   width: 100%;
   transition: background 200ms;
 }
@@ -217,6 +232,13 @@ input[type="url"]:focus {
 input[type="url"]:focus::placeholder {
   opacity: 0.3;
 }
+.u-done input[type="url"] {
+  background: #fffbcc;
+  box-shadow: inset 0 0 0 3px #3dcc9c, 2px 2px 4px 0 var(--shadow), 8px 8px 16px 0 var(--shadow);
+}
+.u-waiting input[type="url"] {
+  background: rgba(255, 255, 255, 0.5);
+}
 
 @media screen and (max-width: 600px) {
   .eavesdrop {
@@ -229,6 +251,7 @@ input[type="url"]:focus::placeholder {
 
   input[type="url"] {
     font-size: 16px;
+    padding: 10px 15px;
   }
 
   aside {
@@ -239,6 +262,11 @@ input[type="url"]:focus::placeholder {
   }
   aside p {
     font-size: 18px;
+  }
+
+  [role="alert"] p {
+    font-size: 18px;
+    margin: 15px 0;
   }
 
   footer {
