@@ -29,6 +29,12 @@ workbox.precaching.precacheAndRoute([
 workbox.precaching.cleanupOutdatedCaches();
 
 workbox.routing.registerRoute(
+  /^\/$/,
+  new workbox.strategies.StaleWhileRevalidate(),
+  'GET'
+);
+
+workbox.routing.registerRoute(
   /.(css|js)(\?v=([\d]+\.[\d]+\.[\d]+))?$/,
   new workbox.strategies.StaleWhileRevalidate(),
   'GET'
