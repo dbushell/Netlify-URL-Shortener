@@ -16,7 +16,7 @@ workbox.core.clientsClaim();
 workbox.precaching.precacheAndRoute([
   {
     url: 'index.html',
-    revision: 'v0.1.0'
+    revision: 'v0.1.1'
   },
   {
     url: 'assets/app.css?v=0.1.0'
