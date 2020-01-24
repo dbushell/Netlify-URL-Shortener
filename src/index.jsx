@@ -7,6 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<App />, $app);
 });
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
+
 (function(d) {
   var config = {
       kitId: 'kyo1upk',
