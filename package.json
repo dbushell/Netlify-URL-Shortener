@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/dbushell/eavesdrop.app.git"
   },
-  "description": "URL unshortener/expander Progressive Web App (hosted on Netlify)",
+  "description": "URL Unshortener (Progressive Web App, deployed on Netlify)",
   "main": "functions/unshorten.js",
   "scripts": {
     "webpack": "npx webpack --mode production",
