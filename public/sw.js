@@ -6,7 +6,7 @@ workbox.core.setCacheNameDetails({
   runtime: 'runtime',
   precache: 'precache',
   prefix: 'eavesdrop',
-  suffix: 'v0.1.0'
+  suffix: 'v0.1.2'
 });
 
 workbox.core.skipWaiting();
@@ -16,13 +16,13 @@ workbox.core.clientsClaim();
 workbox.precaching.precacheAndRoute([
   {
     url: 'index.html',
-    revision: 'v0.1.1'
+    revision: 'v0.1.2'
   },
   {
-    url: 'assets/app.css?v=0.1.0'
+    url: 'assets/app.css?v=0.1.2'
   },
   {
-    url: 'assets/app.min.js?v=0.1.0'
+    url: 'assets/app.min.js?v=0.1.2'
   }
 ]);
 
