@@ -16,4 +16,6 @@ More details coming soon...
 
 Unshorten function based on [tall](https://github.com/lmammino/tall)
 
+CSS animations inspired by [Lucas Bebber](https://codepen.io/lbebber/pen/ypgql) and [creme](https://codepen.io/creme/pen/aPJwEz) on CodePen
+
 MIT licensed | Copyright © 2020 [David Bushell](http://dbushell.com) | [@dbushell](http://twitter.com/dbushell)
