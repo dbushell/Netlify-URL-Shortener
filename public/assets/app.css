@@ -163,6 +163,9 @@ aside p {
   letter-spacing: 0.03rem;
   margin: 1.5vw 0;
 }
+aside a {
+  color: white;
+}
 
 [role="alert"] {
   color: var(--error);

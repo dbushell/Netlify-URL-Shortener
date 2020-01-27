@@ -9,7 +9,7 @@ URL Unshortener (Progressive Web App, deployed on Netlify)
 
 Eavesdrop is a PWA proof-of-concept built with React, Node, and deployed on Netlify.
 
-More details coming soon...
+Read more on my blog: [Building a PWA with Netlify Functions](https://dbushell.com/2020/01/27/building-a-pwa-with-netlify-functions/).
 
 * * *
 
