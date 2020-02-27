@@ -2,7 +2,8 @@ const ver = `0.1.4`;
 const cacheName = `eavesdrop-${ver}`;
 
 const precache = [
-  `/`
+  `/`,
+  `/assets/app.js?v=${ver}`
 ];
 
 self.addEventListener('install', ev => {
