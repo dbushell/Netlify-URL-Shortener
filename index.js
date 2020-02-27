@@ -41,4 +41,7 @@ fs.writeFileSync(tomlPath, toml);
 
 fs.writeFileSync(path.join(publicPath, `index.html`), html);
 
+console.log(`css: ${cssHash}`);
+console.log(`js: ${jsHash}`);
+
 console.log(`\n🚀 Build complete!`);
