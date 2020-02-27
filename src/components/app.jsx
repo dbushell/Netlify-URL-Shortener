@@ -61,7 +61,7 @@ const App = props => {
             onSubmit
           }}
         />
-        {isError && <Alert message={'⚠️ Sorry – the unshortening failed…'} />}
+        {isError && <Alert message={'Sorry – the unshortening failed…'} />}
       </main>
       <Aside />
       <Footer />
