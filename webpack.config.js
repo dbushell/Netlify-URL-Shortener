@@ -8,9 +8,6 @@ module.exports = (env, argv) => ({
     path: path.resolve(__dirname, 'public/assets'),
     filename: `app.js`
   },
-  optimization: {
-    minimize: false
-  },
   externals:
     mode === 'production'
       ? {}
