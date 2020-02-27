@@ -22,7 +22,7 @@ html = html.toString().replace(/{{ css }}/g, css);
 html = html.toString().replace(/{{ css-hash }}/g, cssHash);
 
 let js = fs.readFileSync(path.join(publicPath, `assets/app.js`));
-js = terser.minify(js.toString(), {}).code.trim();
+// js = terser.minify(js.toString(), {}).code.trim();
 const jsHash = crypto
   .createHash('sha256')
   .update(js, 'utf8')
