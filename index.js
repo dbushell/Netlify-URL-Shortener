@@ -11,10 +11,10 @@ let html = fs.readFileSync(path.resolve(__dirname, `src/index.html`));
 html = html.toString().replace(/{{ version }}/g, pkg.version);
 
 let css = fs.readFileSync(path.join(publicPath, `assets/app.css`));
-css = csso.minify(css.toString()).css.trim();
+css = csso.minify(css.toString()).css;
 const cssHash = crypto
   .createHash('sha256')
-  .update(css)
+  .update(css, 'utf8')
   .digest('base64');
 
 html = html.toString().replace(/{{ css }}/g, css);
@@ -24,8 +24,9 @@ let js = fs.readFileSync(path.join(publicPath, `assets/app.min.js`));
 js = js.toString().trim();
 const jsHash = crypto
   .createHash('sha256')
-  .update(js)
+  .update(js, 'utf8')
   .digest('base64');
+
 
 html = html.toString().replace(/{{ js }}/g, js);
 html = html.toString().replace(/{{ js-hash }}/g, jsHash);
