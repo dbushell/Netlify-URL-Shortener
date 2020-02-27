@@ -6,7 +6,10 @@ module.exports = (env, argv) => ({
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public/assets'),
-    filename: `app${mode === 'development' ? '' : '.min'}.js`
+    filename: `app.js`
+  },
+  optimization: {
+    minimize: false
   },
   externals:
     mode === 'production'
