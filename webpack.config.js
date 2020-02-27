@@ -1,15 +1,20 @@
 const path = require('path');
 
+const mode = 'production';
+
 module.exports = (env, argv) => ({
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public/assets'),
-    filename: 'app.min.js'
+    filename: `app${mode === 'development' ? '' : '.min'}.js`
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
+  externals:
+    mode === 'production'
+      ? {}
+      : {
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        },
   module: {
     rules: [
       {
@@ -23,11 +28,10 @@ module.exports = (env, argv) => ({
               [
                 '@babel/preset-env',
                 {
+                  debug: mode === 'development',
+                  targets: '> 1%, not dead, not ie 11',
                   useBuiltIns: 'usage',
-                  corejs: 3,
-                  targets: {
-                    browsers: ['> 1%']
-                  }
+                  corejs: 3
                 }
               ]
             ]
@@ -37,6 +41,14 @@ module.exports = (env, argv) => ({
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
+    alias:
+      mode === 'development'
+        ? {}
+        : {
+            react: 'preact/compat',
+            'react-dom/test-utils': 'preact/test-utils',
+            'react-dom': 'preact/compat'
+          }
   }
 });

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="dns-prefetch" href="https://use.typekit.net">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eavesdrop</title>
+    <link rel="manifest" href="/manifest.webmanifest?v={{ version }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v={{ version }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v={{ version }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v={{ version }}">
+    <style type="text/css" data-hash="{{ css-hash }}">{{ css }}</style>
+  </head>
+  <body>
+    <div class="eavesdrop"></div>
+    <script type="text/javascript" data-hash="{{ js-hash }}">{{ js }}</script>
+  </body>
+</html>

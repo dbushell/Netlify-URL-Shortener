@@ -1,55 +1,66 @@
-importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
-);
+const ver = `0.1.4`;
+const cacheName = `eavesdrop-${ver}`;
 
-workbox.core.setCacheNameDetails({
-  runtime: 'runtime',
-  precache: 'precache',
-  prefix: 'eavesdrop',
-  suffix: 'v0.1.3'
+const precache = [
+  `/`,
+  `/assets/app.min.js?v=${ver}`
+];
+
+self.addEventListener('install', ev => {
+  console.log(`install`);
+  self.skipWaiting();
+  ev.waitUntil(caches.open(cacheName).then(cache => cache.addAll(precache)));
 });
 
-workbox.core.skipWaiting();
+self.addEventListener('activate', ev => {
+  console.log(`activate`);
+  ev.waitUntil(self.clients.claim());
+  ev.waitUntil(
+    caches.keys().then(keyList =>
+      Promise.all(
+        keyList.map(key => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        })
+      )
+    )
+  );
+});
 
-workbox.core.clientsClaim();
+const fromCache = request =>
+  caches.open(cacheName).then(cache => cache.match(request));
 
-workbox.precaching.precacheAndRoute([
-  {
-    url: 'index.html',
-    revision: 'v0.1.3'
-  },
-  {
-    url: 'assets/app.css?v=0.1.3'
-  },
-  {
-    url: 'assets/app.min.js?v=0.1.3'
+const updateCache = (request, response) =>
+  caches.open(cacheName).then(cache => cache.put(request, response));
+
+const fetchAndCache = ev =>
+  fetch(ev.request)
+    .then(response => {
+      if (!response || response.status !== 200 || response.type !== 'basic') {
+        return response;
+      }
+      ev.waitUntil(updateCache(ev.request, response.clone()));
+      return response;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+self.addEventListener('fetch', ev => {
+  if (ev.request.method !== 'GET') {
+    return;
   }
-]);
-
-workbox.precaching.cleanupOutdatedCaches();
-
-workbox.routing.registerRoute(
-  /^\/$/,
-  new workbox.strategies.StaleWhileRevalidate(),
-  'GET'
-);
-
-workbox.routing.registerRoute(
-  /.(css|js)(\?v=([\d]+\.[\d]+\.[\d]+))?$/,
-  new workbox.strategies.StaleWhileRevalidate(),
-  'GET'
-);
-
-workbox.routing.registerRoute(
-  /.(?:gif|jpeg|jpg|png|svg)(\?v=([\d]+\.[\d]+\.[\d]+))?$/,
-  new workbox.strategies.CacheFirst(),
-  'GET'
-);
-
-workbox.routing.registerRoute(
-  /https:\/\/(.*?).?(typekit|unpkg).[a-z]{3}\/(.*)/,
-  new workbox.strategies.CacheFirst({
-    plugins: [new workbox.cacheableResponse.Plugin({statuses: [0, 200]})]
-  }),
-  'GET'
-);
+  const url = new URL(ev.request.url);
+  ev.respondWith(
+    fromCache(ev.request).then(response => {
+      if (response) {
+        console.log(`from cache: ${url.pathname}`);
+        ev.waitUntil(fetchAndCache(ev));
+        return response;
+      }
+      console.log(`from fetch: ${url.pathname}`);
+      return fetchAndCache(ev);
+    })
+  );
+});
