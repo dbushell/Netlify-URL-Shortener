@@ -1,6 +1,6 @@
 {
   "name": "eavesdrop-app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dbushell/eavesdrop.app.git"
@@ -15,16 +15,16 @@
   "author": "David Bushell <david@dbushell.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
-    "babel-loader": "^8.0.6",
-    "core-js": "^3.6.4",
-    "csso": "^4.0.2",
-    "preact": "^10.3.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.8.2",
+    "csso": "^4.2.0",
+    "preact": "^10.5.9",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
   }
 }
