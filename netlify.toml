@@ -1,0 +1,13 @@
+[build]
+  publish = "./public"
+  functions = "./functions"
+  command = "npm run build"
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'; style-src 'sha256-t5mvssT6VXlum1/n9g08jAyMlMuSY4SsjIizAbUGFG8='; frame-ancestors 'none'"
