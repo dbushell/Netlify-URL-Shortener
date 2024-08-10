@@ -1,9 +1,9 @@
 {
-  "name": "eavesdrop.netlify.app",
+  "name": "netlify-url-shortener",
   "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbushell/eavesdrop.netlify.app.git"
+    "url": "git+https://github.com/dbushell/netlify-url-shortener.git"
   },
   "description": "URL Unshortener (Progressive Web App, deployed on Netlify)",
   "main": "functions/unshorten.js",
